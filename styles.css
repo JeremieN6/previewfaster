@@ -1,0 +1,976 @@
+/* ========================================
+   CSS VARIABLES - Easy Theme Customization
+   ======================================== */
+:root {
+    /* iPhone Mockup Dimensions */
+    --iphone-width: 200px;
+    --iphone-height: 410px;
+    --iphone-radius: 32px;
+    --iphone-bezel: 6px;
+    --notch-width: 90px;
+    --notch-height: 20px;
+    
+    /* Card Dimensions */
+    --card-width: 260px;
+    --card-height: 520px;
+    --card-radius: 20px;
+    
+    /* Typography */
+    --font-primary: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    --title-size: 2rem;
+    --brand-size: 0.875rem;
+    
+    /* Colors - Default Theme */
+    --bg-gradient-start: #1a1a2e;
+    --bg-gradient-end: #16213e;
+    --text-primary: #ffffff;
+    --text-secondary: rgba(255, 255, 255, 0.7);
+}
+
+/* ========================================
+   THEME VARIANTS
+   ======================================== */
+[data-theme="purple-dark"] {
+    --bg-gradient-start: #2d1b4e;
+    --bg-gradient-end: #1a0f2e;
+}
+
+.background-mode-buttons {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.bg-mode-btn {
+    padding: 8px 16px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-primary);
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.bg-mode-btn:hover {
+    border-color: #667eea;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.bg-mode-btn.active {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-color: transparent;
+    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.25);
+}
+
+#backgroundSolidGroup {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+#backgroundSolidGroup input[type="color"] {
+    width: 60px;
+    height: 60px;
+    border: 3px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    cursor: pointer;
+    background: transparent;
+    transition: all 0.2s ease;
+}
+
+#backgroundSolidGroup input[type="color"]:hover {
+    border-color: #667eea;
+    transform: scale(1.05);
+}
+
+#backgroundImageGroup {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-top: 20px;
+}
+
+#backgroundImageGroup input[type="text"] {
+    flex: 1;
+}
+
+#backgroundImageGroup .btn-secondary {
+    flex-shrink: 0;
+}
+
+[data-theme="purple-medium"] {
+    --bg-gradient-start: #4a2c6b;
+    --bg-gradient-end: #2d1b4e;
+}
+
+[data-theme="beige-warm"] {
+    --bg-gradient-start: #8b6f47;
+    --bg-gradient-end: #5d4a31;
+}
+
+[data-theme="gray-urban"] {
+    --bg-gradient-start: #4a5568;
+    --bg-gradient-end: #2d3748;
+}
+
+[data-theme="green-dark"] {
+    --bg-gradient-start: #2d4a3e;
+    --bg-gradient-end: #1a2f26;
+}
+
+/* ========================================
+   BASE STYLES
+   ======================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-primary);
+    background: linear-gradient(135deg, #0f0f1e 0%, #1a1a2e 100%);
+    color: var(--text-primary);
+    min-height: 100vh;
+    padding: 40px 20px;
+}
+
+.container {
+    max-width: 1800px;
+    margin: 0 auto;
+}
+
+/* ========================================
+   HEADER
+   ======================================== */
+.header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.header h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    font-size: 1.125rem;
+    color: var(--text-secondary);
+}
+
+.global-actions {
+    max-width: 600px;
+    margin: 0 auto 40px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.main-download-btn {
+    border-radius: 999px;
+    font-size: 1rem;
+    padding: 14px 28px;
+}
+
+.main-download-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.global-actions-hint {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+}
+
+/* ========================================
+   DESIGN SECTIONS
+   ======================================== */
+.design-section {
+    margin-bottom: 60px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.design-header {
+    width: 100%;
+    max-width: 1100px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.design-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0;
+    padding-left: 10px;
+}
+
+.download-design-btn {
+    padding: 10px 20px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--text-primary);
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.download-design-btn:hover:not(:disabled) {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-color: transparent;
+    box-shadow: 0 10px 20px rgba(118, 75, 162, 0.25);
+}
+
+.download-design-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* ========================================
+   CARDS CONTAINER
+   ======================================== */
+.cards-container {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    padding: 20px 10px;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+}
+
+.cards-container::-webkit-scrollbar {
+    height: 10px;
+}
+
+.cards-container::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+}
+
+.cards-container::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+}
+
+.cards-container::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.5);
+}
+
+/* ========================================
+   CARD COMPONENT
+   ======================================== */
+.card {
+    position: relative;
+    width: var(--card-width);
+    height: var(--card-height);
+    border-radius: var(--card-radius);
+    overflow: hidden;
+    flex-shrink: 0;
+    scroll-snap-align: center;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
+    z-index: 1;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.card-background:hover {
+    filter: brightness(1.15);
+}
+
+/* Optional: Background image overlay */
+.card-background::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* Make background editable */
+.card-background::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    z-index: 10;
+}
+
+.card-background:hover::before {
+    content: '🎨 Changer couleur';
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
+    padding: 20px;
+    font-size: 1rem;
+    font-weight: 600;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    backdrop-filter: blur(5px);
+    pointer-events: none;
+}
+
+.card-content {
+    position: relative;
+    z-index: 3;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 30px 20px 0;
+}
+
+/* ========================================
+   CARD HEADER
+   ======================================== */
+.card-header {
+    margin-bottom: 30px;
+}
+
+.card-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--text-primary);
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+}
+
+.card-title:hover {
+    opacity: 0.8;
+}
+
+.card-brand {
+    font-size: var(--brand-size);
+    color: var(--text-secondary);
+    text-align: right;
+}
+
+[data-editable="text"],
+[data-editable="title"],
+[data-editable="subtitle"] {
+    position: relative;
+    display: inline-block;
+    padding-right: 26px;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+}
+
+[data-editable="text"]::after,
+[data-editable="title"]::after,
+[data-editable="subtitle"]::after {
+    content: '✎';
+    position: absolute;
+    top: 50%;
+    right: 4px;
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.7);
+    opacity: 0;
+    transform: translate(0, -50%);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    pointer-events: none;
+}
+
+[data-editable="text"]:hover::after,
+[data-editable="title"]:hover::after,
+[data-editable="subtitle"]:hover::after {
+    opacity: 0.85;
+    transform: translate(0, -50%) scale(1.05);
+}
+
+/* ========================================
+   IPHONE MOCKUP
+   ======================================== */
+.iphone-mockup {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    position: relative;
+    /* This creates the "crop at bottom" effect */
+    padding-bottom: 0;
+    padding-top: 40px; /* Space between text and phone */
+    margin-bottom: -140px; /* Negative margin to crop bottom */
+}
+
+.iphone-frame {
+    position: relative;
+    width: var(--iphone-width);
+    height: var(--iphone-height);
+    background: #1a1a1a;
+    border-radius: var(--iphone-radius);
+    padding: var(--iphone-bezel);
+    box-shadow: 
+        0 0 0 2px #2a2a2a,
+        0 0 0 4px #1a1a1a,
+        0 30px 60px rgba(0, 0, 0, 0.6);
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.iphone-frame:hover {
+    transform: scale(1.02);
+}
+
+/* iPhone Notch */
+.iphone-notch {
+    position: absolute;
+    top: var(--iphone-bezel);
+    left: 50%;
+    transform: translateX(-50%);
+    width: var(--notch-width);
+    height: var(--notch-height);
+    background: #1a1a1a;
+    border-radius: 0 0 20px 20px;
+    z-index: 10;
+}
+
+/* iPhone Screen */
+.iphone-screen {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    border-radius: calc(var(--iphone-radius) - var(--iphone-bezel));
+    overflow: hidden;
+}
+
+.screenshot-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+}
+
+.screenshot-image:hover {
+    opacity: 0.9;
+}
+
+/* ========================================
+   EDITOR PANEL (SaaS Feature)
+   ======================================== */
+.editor-panel {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(180deg, #2d2d44 0%, #1a1a2e 100%);
+    border-top: 2px solid rgba(102, 126, 234, 0.3);
+    padding: 30px;
+    box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(100%);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+.editor-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.editor-content h3 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: var(--text-primary);
+}
+
+.editor-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.control-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.control-group label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.control-group input,
+.control-group textarea {
+    padding: 12px 16px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    color: var(--text-primary);
+    font-family: var(--font-primary);
+    font-size: 1rem;
+    transition: all 0.2s ease;
+}
+
+.control-group input:focus,
+.control-group textarea:focus {
+    outline: none;
+    border-color: #667eea;
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.control-group textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.editor-actions {
+    display: flex;
+    gap: 15px;
+    justify-content: flex-end;
+    margin-top: 10px;
+}
+
+.btn-primary,
+.btn-secondary {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+}
+
+.btn-secondary {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-primary);
+}
+
+.btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+/* Color Picker Styles */
+.color-picker-group {
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    gap: 15px;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.color-picker-group input[type="color"] {
+    width: 60px;
+    height: 60px;
+    border: 3px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    cursor: pointer;
+    background: transparent;
+    transition: all 0.2s ease;
+}
+
+.color-picker-group input[type="color"]:hover {
+    border-color: #667eea;
+    transform: scale(1.05);
+}
+
+.color-label {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+}
+
+.preset-colors {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+.preset-color {
+    width: 50px;
+    height: 50px;
+    border: 3px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.preset-color:hover {
+    border-color: #667eea;
+    transform: scale(1.1);
+}
+
+.preset-color::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.preset-color[data-colors*=","]::before {
+    background: linear-gradient(180deg, var(--color1) 0%, var(--color2) 100%);
+}
+
+/* Preset color backgrounds */
+.preset-color[data-colors="#{2d1b4e},#{1a0f2e}"]::before { background: linear-gradient(180deg, #2d1b4e 0%, #1a0f2e 100%); }
+.preset-color[data-colors="#{4a2c6b},#{2d1b4e}"]::before { background: linear-gradient(180deg, #4a2c6b 0%, #2d1b4e 100%); }
+.preset-color[data-colors="#{8b6f47},#{5d4a31}"]::before { background: linear-gradient(180deg, #8b6f47 0%, #5d4a31 100%); }
+.preset-color[data-colors="#{4a5568},#{2d3748}"]::before { background: linear-gradient(180deg, #4a5568 0%, #2d3748 100%); }
+.preset-color[data-colors="#{2d4a3e},#{1a2f26}"]::before { background: linear-gradient(180deg, #2d4a3e 0%, #1a2f26 100%); }
+.preset-color[data-colors="#{c31432},#{240b36}"]::before { background: linear-gradient(180deg, #c31432 0%, #240b36 100%); }
+.preset-color[data-colors="#{0f2027},#{203a43},#{2c5364}"]::before { background: linear-gradient(180deg, #0f2027 0%, #2c5364 100%); }
+.preset-color[data-colors="#{f12711},#{f5af19}"]::before { background: linear-gradient(180deg, #f12711 0%, #f5af19 100%); }
+
+/* ========================================
+   RESPONSIVE DESIGN
+   ======================================== */
+@media (max-width: 768px) {
+    :root {
+        --card-width: 300px;
+        --card-height: 600px;
+        --iphone-width: 240px;
+        --iphone-height: 490px;
+        --title-size: 1.75rem;
+    }
+    
+    .header h1 {
+        font-size: 2.5rem;
+    }
+    
+    .cards-container {
+        gap: 20px;
+    }
+
+    .design-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        max-width: 100%;
+    }
+
+    .download-design-btn {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .editor-panel {
+        padding: 20px;
+    }
+    
+    .editor-actions {
+        flex-direction: column;
+    }
+    
+    .btn-primary,
+    .btn-secondary {
+        width: 100%;
+    }
+}
+
+/* ========================================
+   UTILITY CLASSES
+   ======================================== */
+.editable-active {
+    outline: 2px solid #667eea;
+    outline-offset: 4px;
+    border-radius: 4px;
+}
+
+.loading {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+/* ========================================
+   DESIGN 2 - PREMIER LEAGUE STYLE
+   ======================================== */
+
+/* Design 2 Card Base */
+.card-design2 {
+    position: relative;
+    width: var(--card-width);
+    height: var(--card-height);
+    border-radius: var(--card-radius);
+    overflow: hidden;
+    flex-shrink: 0;
+    scroll-snap-align: center;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+/* Background Image */
+.card-bg-image {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    z-index: 1;
+}
+
+.card-bg-image:hover {
+    transform: scale(1.05);
+}
+
+/* Gradient Overlay */
+.gradient-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.3) 100%);
+    cursor: pointer;
+    z-index: 2;
+}
+
+/* Card Content for Design 2 */
+.card-content-d2 {
+    position: relative;
+    z-index: 10;
+    padding: 30px 20px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* App Logo */
+.app-logo {
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    object-fit: contain;
+    margin-bottom: 15px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.app-logo:hover {
+    transform: scale(1.1);
+}
+
+/* Card Title Design 2 */
+.card-title-d2 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    line-height: 1.1;
+    color: white;
+    margin-top: auto;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+}
+
+.card-title-d2:hover {
+    opacity: 0.8;
+}
+
+/* Design 2 - Mockup Screens */
+.card-background-d2 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, #3d195b 0%, #1a0d2e 100%);
+    cursor: pointer;
+    transition: filter 0.2s ease;
+}
+
+.card-background-d2:hover {
+    filter: brightness(1.15);
+}
+
+.card-content-d2-center {
+    position: relative;
+    z-index: 10;
+    padding: 30px 20px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.card-title-top {
+    font-size: 1.3rem;
+    font-weight: 700;
+    line-height: 1.2;
+    color: white;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.card-subtitle {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 20px;
+    max-width: 220px;
+    cursor: pointer;
+}
+
+/* Card editing tools */
+.card-tools {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    display: flex;
+    gap: 8px;
+    z-index: 20;
+}
+
+.options-btn {
+    background: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.options-btn:hover:not(:disabled) {
+    background: rgba(0, 0, 0, 0.8);
+    transform: translateY(-1px);
+}
+
+.options-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.options-selector {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.option-pill {
+    padding: 10px 16px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.04);
+    color: var(--text-primary);
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.option-pill:hover {
+    border-color: #667eea;
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.option-pill.active {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-color: transparent;
+    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.25);
+}
+
+/* White iPhone Mockup */
+.iphone-mockup-white {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    position: relative;
+    margin-bottom: -60px;
+}
+
+.iphone-frame-white {
+    position: relative;
+    width: var(--iphone-width);
+    height: var(--iphone-height);
+    background: #ffffff;
+    border-radius: var(--iphone-radius);
+    padding: var(--iphone-bezel);
+    box-shadow: 
+        0 0 0 2px #e5e5e5,
+        0 0 0 4px #ffffff,
+        0 30px 60px rgba(0, 0, 0, 0.6);
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.iphone-frame-white:hover {
+    transform: scale(1.02);
+}
+
+.iphone-notch-white {
+    position: absolute;
+    top: var(--iphone-bezel);
+    left: 50%;
+    transform: translateX(-50%);
+    width: var(--notch-width);
+    height: var(--notch-height);
+    background: #ffffff;
+    border-radius: 0 0 20px 20px;
+    z-index: 10;
+}
+
+.iphone-screen-white {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: #f5f5f5;
+    border-radius: calc(var(--iphone-radius) - var(--iphone-bezel));
+    overflow: hidden;
+}
