@@ -3,16 +3,16 @@
     <div class="mx-auto flex max-w-screen-xl flex-col items-center px-4 py-12 text-center lg:py-8 lg:px-12">
       <RouterLink
         to="/builder"
-        class="inline-flex justify-between items-center py-1 px-1 pr-4 mb-7 text-sm text-gray-700 bg-gray-100 rounded-full dark:bg-gray-900 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700"
+        class="inline-flex justify-between items-center py-1 px-1 pr-4 mb-7 text-sm text-gray-700 bg-gray-200 rounded-full dark:bg-gray-900 dark:text-white hover:bg-gray-300 dark:hover:bg-gray-800"
       >
         <span class="rounded-full bg-blue-600 px-4 py-1.5 text-xs text-white">Nouveau</span>
-        <span class="px-3 text-sm font-medium">Le builder PreviewFast est dispo ⚡</span>
+        <span class="px-3 text-sm font-medium italic">Le builder PreviewFast est dispo ⚡</span>
       </RouterLink>
       <h1 class="mb-4 text-4xl italic font-extrabold leading-tight text-gray-900 dark:text-white md:text-5xl lg:text-6xl">
         Créez des <span class="text-gradient">mockups mobiles</span> en 2 clics.
       </h1>
       <p class="mb-10 max-w-3xl text-lg text-gray-600 dark:text-gray-300">
-        Importez vos captures, glissez les meilleurs templates iOS & Android puis exportez en HD. PreviewFast automatise toutes les tâches répétitives pour accélérer vos livrables marketing.
+        Importez vos captures, choisissez parmi les meilleurs templates iOS puis exportez en HD. PreviewFast automatise toutes les tâches répétitives pour accélérer vos livrables marketing.
       </p>
       <div class="flex flex-col gap-4 sm:flex-row sm:justify-center">
         <RouterLink
