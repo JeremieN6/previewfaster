@@ -6,19 +6,19 @@ const defaultTextCards = [
   {
     id: createId(),
     title: 'Boost your KPIs',
-    subtitle: 'Screens that convert in under 5 minutes'
+    text: 'Screens that convert in under 5 minutes'
   },
   {
     id: createId(),
     title: 'Tell a better story',
-    subtitle: 'Mix copy + mockups for social-ready assets'
+    text: 'Mix copy + mockups for social-ready assets'
   }
 ]
 
 const state = reactive({
   screenshots: [],
   textCards: defaultTextCards,
-  selectedCategory: 'business',
+  selectedCategory: 'all',
   selectedTemplateId: null,
   overrides: {}
 })
@@ -64,7 +64,7 @@ export function useBuilderStore() {
   }
 
   const addTextCard = () => {
-    state.textCards.push({ id: createId(), title: 'Nouveau titre', subtitle: 'Nouveau sous-titre' })
+    state.textCards.push({ id: createId(), title: 'Nouveau titre', text: 'Texte à personnaliser' })
   }
 
   const updateTextCard = (id, payload) => {
@@ -76,7 +76,7 @@ export function useBuilderStore() {
   const duplicateTextCard = (id) => {
     const card = state.textCards.find((item) => item.id === id)
     if (!card) return
-    state.textCards.push({ id: createId(), title: `${card.title} (copy)`, subtitle: card.subtitle })
+    state.textCards.push({ id: createId(), title: `${card.title} (copie)`, text: card.text })
   }
 
   const deleteTextCard = (id) => {

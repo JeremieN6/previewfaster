@@ -1,102 +1,117 @@
 export const initialDesignSections = [
   {
     id: 'design-1',
-    title: 'Design 1',
-    downloadLabel: 'Télécharger ce design',
+    title: 'Alma: Nutrition Companion',
+    downloadLabel: 'Télécharger ce template',
     cards: [
       {
         id: 'design-1-card-1',
-        variant: 'mockup-dark',
-        theme: 'purple-dark',
-        title: 'One app<br>All the rides',
-        screenshotUrl: 'https://placehold.co/390x844/667eea/FFFFFF?text=Screenshot+1',
+        variant: 'mockup-light',
+        title: 'Nutrition Coach',
+        subtitle: 'Track calories, macros, and micronutrients — all in one intelligent food tracker.',
+        screenshotUrl: 'https://placehold.co/390x844/fdf2e9/1f2933?text=Nutrition+Coach',
+        logoUrl: 'https://placehold.co/64x64/4d6b3c/ffffff?text=A',
         background: {
           mode: 'gradient',
-          solid: '#1a1a2e',
-          gradientStart: '#2d1b4e',
-          gradientEnd: '#1a0f2e',
+          solid: '#f6efe4',
+          gradientStart: '#f6efe4',
+          gradientEnd: '#e7d6bc',
           imageUrl: ''
         },
         options: [
           { key: 'title', label: 'Titre', type: 'text' },
+          { key: 'subtitle', label: 'Sous-titre', type: 'text' },
           { key: 'screenshotUrl', label: 'Capture', type: 'image' },
-          { key: 'background', label: 'Fond', type: 'background' }
+          { key: 'background', label: 'Fond', type: 'background' },
+          { key: 'logoUrl', label: 'Logo', type: 'image' }
         ]
       },
       {
         id: 'design-1-card-2',
-        variant: 'mockup-dark',
-        theme: 'purple-medium',
-        title: 'Be there soon<br>Really soon',
-        screenshotUrl: 'https://placehold.co/390x844/764ba2/FFFFFF?text=Screenshot+2',
+        variant: 'mockup-light',
+        title: 'Just say it naturally.',
+        subtitle: 'Log meals in seconds using voice — the fastest way to use a food tracker.',
+        screenshotUrl: 'https://placehold.co/390x844/13250f/f8faf3?text=Voice+Entry',
+        logoUrl: 'https://placehold.co/64x64/4d6b3c/ffffff?text=A',
         background: {
           mode: 'gradient',
-          solid: '#2d1b4e',
-          gradientStart: '#4a2c6b',
-          gradientEnd: '#2d1b4e',
+          solid: '#204114',
+          gradientStart: '#365f1f',
+          gradientEnd: '#1b2f0d',
           imageUrl: ''
         },
         options: [
           { key: 'title', label: 'Titre', type: 'text' },
+          { key: 'subtitle', label: 'Sous-titre', type: 'text' },
           { key: 'screenshotUrl', label: 'Capture', type: 'image' },
-          { key: 'background', label: 'Fond', type: 'background' }
+          { key: 'background', label: 'Fond', type: 'background' },
+          { key: 'logoUrl', label: 'Logo', type: 'image' }
         ]
       },
       {
         id: 'design-1-card-3',
-        variant: 'mockup-dark',
-        theme: 'beige-warm',
-        title: 'Being flexible can<br>save you money',
-        screenshotUrl: 'https://placehold.co/390x844/d4a574/FFFFFF?text=Screenshot+3',
+        variant: 'mockup-light',
+        title: 'Snap. Scan. Done.',
+        subtitle: 'Use the built-in barcode scanner to track packaged foods instantly.',
+        screenshotUrl: 'https://placehold.co/390x844/030303/FFFFFF?text=Scanner',
+        logoUrl: 'https://placehold.co/64x64/4d6b3c/ffffff?text=A',
         background: {
           mode: 'gradient',
-          solid: '#8b6f47',
-          gradientStart: '#8b6f47',
-          gradientEnd: '#5d4a31',
+          solid: '#f7aa32',
+          gradientStart: '#ffcb4b',
+          gradientEnd: '#f2870c',
           imageUrl: ''
         },
         options: [
           { key: 'title', label: 'Titre', type: 'text' },
+          { key: 'subtitle', label: 'Sous-titre', type: 'text' },
           { key: 'screenshotUrl', label: 'Capture', type: 'image' },
-          { key: 'background', label: 'Fond', type: 'background' }
+          { key: 'background', label: 'Fond', type: 'background' },
+          { key: 'logoUrl', label: 'Logo', type: 'image' }
         ]
       },
       {
         id: 'design-1-card-4',
-        variant: 'mockup-dark',
-        theme: 'gray-urban',
-        title: 'How you get there<br>is up to you',
-        screenshotUrl: 'https://placehold.co/390x844/8b9ba8/FFFFFF?text=Screenshot+4',
+        variant: 'mockup-light',
+        title: 'Goals you care about',
+        subtitle: 'From energy to weight loss, your food tracker adapts to what matters most.',
+        screenshotUrl: 'https://placehold.co/390x844/fef4ea/1f2933?text=Goals',
+        logoUrl: 'https://placehold.co/64x64/4d6b3c/ffffff?text=A',
         background: {
           mode: 'gradient',
-          solid: '#4a5568',
-          gradientStart: '#4a5568',
-          gradientEnd: '#2d3748',
+          solid: '#f0782c',
+          gradientStart: '#ff8734',
+          gradientEnd: '#d35611',
           imageUrl: ''
         },
         options: [
           { key: 'title', label: 'Titre', type: 'text' },
+          { key: 'subtitle', label: 'Sous-titre', type: 'text' },
           { key: 'screenshotUrl', label: 'Capture', type: 'image' },
-          { key: 'background', label: 'Fond', type: 'background' }
+          { key: 'background', label: 'Fond', type: 'background' },
+          { key: 'logoUrl', label: 'Logo', type: 'image' }
         ]
       },
       {
         id: 'design-1-card-5',
-        variant: 'mockup-dark',
-        theme: 'green-dark',
-        title: 'Schedule ahead,<br>leave stress behind',
-        screenshotUrl: 'https://placehold.co/390x844/3d5a4a/FFFFFF?text=Screenshot+5',
+        variant: 'mockup-light',
+        title: 'Answer any question',
+        subtitle: 'Ask about calories, macros, or portions — and get instant nutrition insights.',
+        screenshotUrl: 'https://placehold.co/390x844/f8fdff/0f172a?text=Insights',
+        logoUrl: 'https://placehold.co/64x64/4d6b3c/ffffff?text=A',
         background: {
           mode: 'gradient',
-          solid: '#2d4a3e',
-          gradientStart: '#2d4a3e',
-          gradientEnd: '#1a2f26',
+          solid: '#9fd8e4',
+          gradientStart: '#9fd8e4',
+          gradientEnd: '#65b9d1',
           imageUrl: ''
         },
         options: [
           { key: 'title', label: 'Titre', type: 'text' },
+          { key: 'subtitle', label: 'Sous-titre', type: 'text' },
           { key: 'screenshotUrl', label: 'Capture', type: 'image' },
-          { key: 'background', label: 'Fond', type: 'background' }
+          { key: 'background', label: 'Fond', type: 'background' },
+          { key: 'logoUrl', label: 'Logo', type: 'image' }
         ]
       }
     ]
