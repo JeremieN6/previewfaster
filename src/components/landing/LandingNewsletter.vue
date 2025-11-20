@@ -1,5 +1,5 @@
 <template>
-  <section class="bg-gray-50 dark:bg-gray-800">
+  <section class="bg-gray-100 dark:bg-gray-800">
     <div class="mx-auto max-w-screen-xl px-4 py-16 lg:px-6">
       <div class="mx-auto max-w-screen-md text-center">
         <h2 class="mb-4 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white">Recevez la newsletter produit</h2>

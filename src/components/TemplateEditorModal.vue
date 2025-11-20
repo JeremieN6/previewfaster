@@ -1,7 +1,7 @@
 <template>
   <teleport to="body">
     <div v-if="open && slide" class="fixed inset-0 z-50 overflow-y-auto bg-slate-900/70 px-4 py-8">
-      <div class="relative mx-auto w-full max-w-5xl rounded-3xl bg-white shadow-2xl dark:bg-gray-900">
+      <div class="relative mx-auto w-full max-w-6xl rounded-3xl bg-white shadow-2xl dark:bg-gray-900">
         <button
           type="button"
           class="absolute right-4 top-4 inline-flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 text-gray-500 hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-300"
@@ -10,8 +10,8 @@
           <span class="sr-only">Fermer</span>
           ✕
         </button>
-        <div class="grid grid-cols-1 gap-6 p-6 lg:grid-cols-[3fr_2fr]">
-          <div class="flex flex-col gap-4">
+        <div class="grid grid-cols-1 gap-6 p-6 lg:grid-cols-[4fr_2fr]">
+          <div class="flex flex-col gap-6">
             <div class="flex items-center justify-between">
               <div>
                 <p class="text-xs font-semibold uppercase tracking-[0.3em] text-gray-500 dark:text-gray-400">Édition</p>
@@ -37,101 +37,42 @@
                 </button>
               </div>
             </div>
-
-            <div class="space-y-3">
+            <div>
               <div class="flex items-center justify-between text-xs font-semibold uppercase tracking-[0.3em] text-gray-400 dark:text-gray-500">
-                <span>Slides</span>
-                <span>{{ activeIndex + 1 }}/{{ slides.length }}</span>
+                <span>Pack complet</span>
+                <span>{{ slides.length }} écrans</span>
               </div>
-              <div
-                v-if="!useCarousel"
-                class="grid gap-2 sm:grid-cols-3 lg:grid-cols-5"
-              >
-                <button
-                  v-for="(thumb, idx) in slides"
-                  :key="thumb.id"
-                  type="button"
-                  class="flex flex-col rounded-2xl border p-2 text-left text-xs transition"
-                  :class="
-                    activeIndex === idx
-                      ? 'border-blue-500 bg-white shadow dark:bg-gray-800'
-                      : 'border-gray-100 bg-white/70 dark:border-gray-800 dark:bg-gray-900'
-                  "
+              <div class="mt-4 grid gap-4" :class="slides.length === 5 ? 'sm:grid-cols-2 lg:grid-cols-5' : 'sm:grid-cols-3 lg:grid-cols-5'">
+                <div
+                  v-for="(s, idx) in slides"
+                  :key="s.id"
+                  class="group relative aspect-[9/16] overflow-hidden rounded-[42px] border transition"
+                  :class="activeIndex === idx ? 'border-blue-500 shadow-xl' : 'border-gray-200 dark:border-gray-700'"
                   @click="jumpTo(idx)"
                 >
-                  <div class="aspect-[9/16] w-full overflow-hidden rounded-xl bg-gray-200 dark:bg-gray-700">
-                    <img :src="thumb.baseScreenshot" alt="Slide preview" class="h-full w-full object-cover" />
-                  </div>
-                  <p class="mt-2 font-semibold text-gray-700 dark:text-gray-200">{{ idx + 1 }}</p>
-                  <p class="text-[10px] text-gray-500 dark:text-gray-400">{{ thumb.name }}</p>
-                </button>
-              </div>
-              <div v-else class="flex items-center gap-2">
-                <button
-                  type="button"
-                  class="inline-flex h-8 w-8 items-center justify-center rounded-full border border-gray-200 text-gray-600 hover:bg-gray-50 disabled:opacity-40 dark:border-gray-700 dark:text-gray-300"
-                  :disabled="activeIndex === 0"
-                  @click="prevSlide"
-                >
-                  ‹
-                </button>
-                <div class="flex-1 overflow-hidden rounded-2xl border border-gray-100 bg-gray-50 dark:border-gray-800 dark:bg-gray-900">
-                  <div class="flex min-w-full gap-2 px-3 py-3 transition" :style="sliderStyle">
-                    <button
-                      v-for="(thumb, idx) in slides"
-                      :key="thumb.id"
-                      type="button"
-                      class="flex w-28 flex-shrink-0 flex-col rounded-2xl border p-2 text-left text-xs transition"
-                      :class="
-                        activeIndex === idx
-                          ? 'border-blue-500 bg-white shadow dark:bg-gray-800'
-                          : 'border-transparent bg-white/60 dark:bg-gray-800/60'
-                      "
-                      @click="jumpTo(idx)"
+                  <div class="absolute inset-0" :style="backgroundStyle"></div>
+                  <div v-if="s.overlay" class="absolute inset-0" :style="{ backgroundImage: s.overlay }"></div>
+                  <div class="relative z-10 h-full w-full">
+                    <div
+                      v-if="showLogo"
+                      class="absolute overflow-hidden border border-white/20 bg-white/15 shadow-lg backdrop-blur"
+                      :style="logoStyle"
                     >
-                      <div class="aspect-[9/16] w-full overflow-hidden rounded-xl bg-gray-200 dark:bg-gray-700">
-                        <img :src="thumb.baseScreenshot" alt="Slide preview" class="h-full w-full object-cover" />
-                      </div>
-                      <p class="mt-2 font-semibold text-gray-700 dark:text-gray-200">{{ idx + 1 }}</p>
-                      <p class="text-[10px] text-gray-500 dark:text-gray-400">{{ thumb.name }}</p>
-                    </button>
-                  </div>
-                </div>
-                <button
-                  type="button"
-                  class="inline-flex h-8 w-8 items-center justify-center rounded-full border border-gray-200 text-gray-600 hover:bg-gray-50 disabled:opacity-40 dark:border-gray-700 dark:text-gray-300"
-                  :disabled="activeIndex >= slides.length - 1"
-                  @click="nextSlide"
-                >
-                  ›
-                </button>
-              </div>
-            </div>
-
-            <div class="flex justify-center">
-              <div
-                ref="canvasRef"
-                class="relative aspect-[9/16] w-full max-w-sm overflow-hidden rounded-[46px] border border-white/30 shadow-[0_45px_90px_rgba(15,23,42,0.45)] dark:border-gray-700"
-                :style="backgroundStyle"
-              >
-                <div v-if="overlayStyle" class="absolute inset-0" :style="overlayStyle"></div>
-                <div class="relative z-10 h-full w-full">
-                  <div
-                    v-if="showLogo"
-                    class="absolute overflow-hidden border border-white/20 bg-white/15 shadow-lg backdrop-blur"
-                    :style="logoStyle"
-                  >
-                    <img :src="logoSrc" alt="Logo" class="h-full w-full object-contain" />
-                  </div>
-                  <template v-for="zone in slide.textZones" :key="zone.id">
-                    <div class="absolute" :style="textZoneStyle(zone)">
-                      <p :class="zone.className">
-                        {{ zone.id === 'title' ? titleText : bodyText }}
-                      </p>
+                      <img :src="logoSrc" alt="Logo" class="h-full w-full object-contain" />
                     </div>
-                  </template>
-                  <div v-if="isDeviceVariant" class="absolute" :style="deviceZoneStyle">
-                    <DeviceMockup :frame="slide.frame" :screenshot-src="screenshotSrc" />
+                    <template v-for="zone in s.textZones" :key="zone.id">
+                      <div class="absolute" :style="textZoneStyle(zone)">
+                        <p :class="zone.className">
+                          {{ zone.id === 'title' ? titleText : bodyText }}
+                        </p>
+                      </div>
+                    </template>
+                    <div v-if="s.renderMode === 'device'" class="absolute" :style="deviceZoneStyleFromSlide(s)">
+                      <DeviceMockup :frame="s.frame" :screenshot-src="screenshotSrc" />
+                    </div>
+                  </div>
+                  <div class="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/40 to-transparent p-2 text-center text-[10px] font-medium text-white opacity-0 group-hover:opacity-100">
+                    {{ s.name }}
                   </div>
                 </div>
               </div>
@@ -204,15 +145,26 @@
                 </label>
               </div>
 
-              <div v-else class="space-y-2">
-                <label class="text-sm font-semibold text-gray-700 dark:text-gray-200" for="bgImageInput">Image de fond</label>
-                <input
-                  id="bgImageInput"
-                  type="url"
-                  placeholder="https://..."
-                  v-model="localBackground.imageUrl"
-                  class="w-full rounded-xl border border-gray-200 px-3 py-2 text-sm focus:border-blue-500 focus:ring-blue-500 dark:border-gray-700 dark:bg-gray-900"
-                />
+              <div v-else class="space-y-3">
+                <div>
+                  <label class="text-sm font-semibold text-gray-700 dark:text-gray-200" for="bgImageInput">URL de l'image</label>
+                  <input
+                    id="bgImageInput"
+                    type="url"
+                    placeholder="https://..."
+                    v-model="localBackground.imageUrl"
+                    class="mt-2 w-full rounded-xl border border-gray-200 px-3 py-2 text-sm focus:border-blue-500 focus:ring-blue-500 dark:border-gray-700 dark:bg-gray-900"
+                  />
+                </div>
+                <div class="relative">
+                  <label class="text-sm font-semibold text-gray-700 dark:text-gray-200">Ou uploader une image</label>
+                  <input
+                    type="file"
+                    accept="image/png,image/jpeg,image/jpg"
+                    @change="handleImageUpload"
+                    class="mt-2 w-full rounded-xl border border-gray-200 px-3 py-2 text-sm file:mr-4 file:rounded-lg file:border-0 file:bg-blue-50 file:px-4 file:py-2 file:text-sm file:font-semibold file:text-blue-700 hover:file:bg-blue-100 dark:border-gray-700 dark:bg-gray-900 dark:file:bg-blue-900/40 dark:file:text-blue-200"
+                  />
+                </div>
               </div>
 
               <button
@@ -320,6 +272,16 @@ const deviceZoneStyle = computed(() => {
     position: 'absolute'
   }
 })
+const deviceZoneStyleFromSlide = (s) => {
+  if (s.renderMode !== 'device' || !s.screenshotArea) return {}
+  return {
+    width: s.screenshotArea.width,
+    height: s.screenshotArea.height,
+    top: s.screenshotArea.top,
+    left: s.screenshotArea.left,
+    position: 'absolute'
+  }
+}
 const textZoneStyle = (zone) => ({
   position: 'absolute',
   top: zone.top,
@@ -341,11 +303,7 @@ const logoStyle = computed(() => {
   }
 })
 
-const useCarousel = computed(() => slides.value.length > 5)
-
-const sliderStyle = computed(() => ({
-  transform: `translateX(-${Math.max(activeIndex.value * 116 - 0, 0)}px)`
-}))
+// plus de carousel; affichage simultané des écrans
 
 const syncFromSlide = () => {
   if (!props.slide) return
@@ -375,10 +333,13 @@ watch(
   [selectedScreenshotId, selectedTextCardId, localBackground],
   () => {
     if (!props.slide) return
-    store.setSlideOverride(props.slide.id, {
-      screenshotId: selectedScreenshotId.value || store.state.screenshots[0]?.id || null,
-      textCardId: selectedTextCardId.value || store.state.textCards[0]?.id || null,
-      background: { ...localBackground.value }
+    // appliquer aux 5 écrans du pack pour cohérence
+    slides.value.forEach((s) => {
+      store.setSlideOverride(s.id, {
+        screenshotId: selectedScreenshotId.value || store.state.screenshots[0]?.id || null,
+        textCardId: selectedTextCardId.value || store.state.textCards[0]?.id || null,
+        background: { ...localBackground.value }
+      })
     })
   },
   { deep: true }
@@ -430,6 +391,16 @@ const jumpTo = (index) => {
   if (slide) {
     store.setSelectedTemplateId(slide.id)
   }
+}
+
+const handleImageUpload = (event) => {
+  const file = event.target.files?.[0]
+  if (!file) return
+  if (!/image\/(png|jpe?g)$/i.test(file.type)) {
+    alert('Format non supporté. Utilisez JPG ou PNG.')
+    return
+  }
+  localBackground.value.imageUrl = URL.createObjectURL(file)
 }
 
 const exportPng = async () => {

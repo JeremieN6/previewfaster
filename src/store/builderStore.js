@@ -42,8 +42,8 @@ export function useBuilderStore() {
     }
 
     const total = state.screenshots.length + incoming.length
-    if (total > 10) {
-      return { ok: false, message: 'Limite atteinte: 10 captures maximum.' }
+    if (total > 12) {
+      return { ok: false, message: 'Limite atteinte: 12 captures maximum.' }
     }
 
     incoming.forEach((file) => state.screenshots.push(makeScreenshot(file)))

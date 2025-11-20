@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100">
+  <section class="bg-gray-200 text-gray-900 dark:bg-gray-900 dark:text-gray-100">
     <LandingNav />
 
     <main class="bg-gradient-to-b from-gray-50 via-white to-white py-12 dark:from-gray-900 dark:via-gray-900 dark:to-gray-950">
@@ -13,51 +13,23 @@
             </p>
           </div>
 
-          <div class="grid gap-8 lg:grid-cols-[320px,1fr]">
-            <section>
-              <Sidebar />
-            </section>
-
-            <div class="space-y-6">
-              <div class="grid gap-6 lg:grid-cols-2">
+          <div class="grid gap-10 lg:grid-cols-[340px,1fr]">
+            <div class="space-y-8">
+              <div class="space-y-6 rounded-2xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
+                <h2 class="text-lg font-semibold text-gray-900 dark:text-white">Importer vos assets</h2>
                 <ScreenshotUploader />
                 <TextCardsEditor />
               </div>
+              <Sidebar />
+            </div>
 
-              <section class="bg-white/90 p-6 shadow-lg dark:bg-gray-900/80">
-                <div class="flex flex-col gap-4 border-b border-gray-100 pb-5 dark:border-gray-800 lg:flex-row lg:items-center lg:justify-between">
-                  <div>
-                    <p class="text-xs font-semibold uppercase tracking-[0.3em] text-gray-500 dark:text-gray-400">Templates</p>
-                    <h2 class="text-2xl font-semibold text-gray-900 dark:text-white">
-                      {{ filteredSlides.length }} slides · {{ currentCategoryLabel }}
-                    </h2>
-                  </div>
-                  <div class="flex flex-wrap gap-2 text-sm">
-                    <span
-                      class="inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-semibold"
-                      :class="store.state.screenshots.length >= 5 ? 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-200' : 'bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-200'"
-                    >
-                      {{ store.state.screenshots.length }}/10 captures
-                    </span>
-                    <span class="inline-flex items-center gap-2 rounded-full bg-blue-100 px-3 py-1 text-xs font-semibold text-blue-700 dark:bg-blue-900/40 dark:text-blue-200">
-                      {{ store.state.textCards.length }} cartes texte
-                    </span>
-                  </div>
-                </div>
-
-                <p v-if="!canRender" class="mt-4 rounded-2xl bg-amber-50 px-4 py-3 text-sm text-amber-800 dark:bg-amber-900/30 dark:text-amber-200">
-                  Ajoute encore {{ missingScreens }} capture(s) pour débloquer les previews dynamiques.
-                </p>
-
-                <div class="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
-                  <TemplatePreview
-                    v-for="slide in filteredSlides"
-                    :key="slide.id"
-                    :slide="slide"
-                    @select="openModal"
-                  />
-                </div>
-              </section>
+            <div class="space-y-12 overflow-x-auto overflow-y-hidden">
+              <TemplatePack
+                v-for="pack in visiblePacks"
+                :key="pack.id"
+                :pack="pack"
+                @choose="openModal"
+              />
             </div>
           </div>
         </div>
@@ -68,29 +40,32 @@
     <LandingFooter />
 
     <TemplateEditorModal :open="Boolean(activeSlide)" :slide="activeSlide" @close="closeModal" />
-  </div>
+  </section>
 </template>
 
 <script setup>
 import { computed } from 'vue'
 import Sidebar from '../components/Sidebar.vue'
-import TemplatePreview from '../components/TemplatePreview.vue'
+import TemplatePack from '../components/TemplatePack.vue'
 import TemplateEditorModal from '../components/TemplateEditorModal.vue'
 import LandingNav from '../components/landing/LandingNav.vue'
 import LandingFooter from '../components/landing/LandingFooter.vue'
 import LandingNewsletter from '../components/landing/LandingNewsletter.vue'
 import ScreenshotUploader from '../components/ScreenshotUploader.vue'
 import TextCardsEditor from '../components/TextCardsEditor.vue'
-import { templateSlides } from '../data/templates'
+import { templateSlides, templatePacks } from '../data/templates'
 import { useBuilderStore } from '../store/builderStore'
 
 const store = useBuilderStore()
 
 const filteredSlides = computed(() => {
-  if (store.state.selectedCategory === 'all') {
-    return templateSlides
-  }
-  return templateSlides.filter((slide) => slide.categories.includes(store.state.selectedCategory))
+  if (store.state.selectedCategory === 'all') return templateSlides
+  return templateSlides.filter((s) => s.categories.includes(store.state.selectedCategory))
+})
+
+const visiblePacks = computed(() => {
+  if (store.state.selectedCategory === 'all') return templatePacks
+  return templatePacks.filter((p) => p.slides.some((s) => s.categories.includes(store.state.selectedCategory)))
 })
 
 const currentCategoryLabel = computed(() => {

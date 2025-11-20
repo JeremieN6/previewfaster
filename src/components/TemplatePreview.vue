@@ -1,10 +1,10 @@
 <template>
   <button
     type="button"
-    class="group flex w-full flex-col gap-2 rounded-3xl border border-white/10 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 p-3 text-left text-white shadow-lg transition hover:-translate-y-1 hover:border-blue-200 hover:shadow-2xl dark:border-slate-700 dark:from-slate-900 dark:via-slate-800 dark:to-black"
+    class="group flex w-full flex-col gap-2"
     @click="emitSelect"
   >
-    <div class="relative w-full rounded-[34px] border border-white/20 p-4 shadow-inner" :style="backgroundStyle">
+    <div class="relative h-[430px] w-[199px] overflow-hidden rounded-[34px] border border-white/10 bg-slate-900 p-4 shadow" :style="backgroundStyle">
       <div
         v-if="overlayStyle"
         class="pointer-events-none absolute inset-0 rounded-[30px] border border-white/10 opacity-90"
@@ -41,8 +41,8 @@
       </div>
     </div>
     <div>
-      <p class="text-xs font-semibold uppercase tracking-[0.3em] text-white/60">{{ slide.packName }}</p>
-      <p class="text-sm font-semibold text-white">{{ slide.name }}</p>
+      <p class="mt-1 text-[10px] font-semibold uppercase tracking-[0.3em] text-gray-500 dark:text-gray-400">{{ slide.packName }}</p>
+      <p class="text-xs font-semibold text-gray-700 dark:text-gray-200">{{ slide.name }}</p>
     </div>
   </button>
 </template>

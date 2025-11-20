@@ -1,5 +1,5 @@
 <template>
-  <footer class="border-t border-gray-100 bg-white px-4 py-10 dark:border-gray-800 dark:bg-gray-900">
+  <footer class="border-t border-gray-100 bg-gray-100 px-4 py-10 dark:border-gray-800 dark:bg-gray-900">
     <div class="mx-auto max-w-screen-xl text-center">
       <RouterLink to="/" class="text-2xl font-semibold text-gray-900 dark:text-white">⚡ PreviewFast</RouterLink>
       <p class="mt-4 text-gray-500 dark:text-gray-400">Votre allié pour livrer des mockups impeccables.</p>
