@@ -1,0 +1,146 @@
+{
+  "packId": "premier-league-manual",
+  "name": "Premier League Manual Pack",
+  "description": "Référence des écrans construits manuellement pour le pack Premier League, avec positions, assets et réglages visuels.",
+  "screens": [
+    {
+      "id": "screen-1",
+      "title": "The official Premier League app",
+      "subtitle": null,
+      "copy": null,
+      "media": {
+        "type": "image",
+        "src": "https://placehold.co/350x700/f7a5c7/FFFFFF?text=Screen+1"
+      },
+      "overlay": {
+        "type": "gradient",
+        "style": "linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.55) 92%)"
+      },
+      "logo": {
+        "visible": true,
+        "label": "Logo",
+        "background": "rgba(126,58,242,0.9)",
+        "textColor": "#ffffff"
+      },
+      "background": {
+        "type": "image",
+        "style": null
+      }
+    },
+    {
+      "id": "screen-2",
+      "title": null,
+      "subtitle": null,
+      "copy": null,
+      "media": {
+        "type": "image",
+        "src": "https://placehold.co/350x700/cecece/FFFFFF?text=Screen+2"
+      },
+      "overlay": null,
+      "logo": {
+        "visible": false
+      },
+      "background": {
+        "type": "image",
+        "style": null
+      }
+    },
+    {
+      "id": "screen-3",
+      "title": "The new home of the Premier League",
+      "subtitle": null,
+      "copy": null,
+      "media": {
+        "type": "image",
+        "src": "https://placehold.co/350x700/b7d2ff/FFFFFF?text=Screen+3"
+      },
+      "overlay": {
+        "type": "gradient",
+        "style": "linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.55) 92%)"
+      },
+      "logo": {
+        "visible": false
+      },
+      "background": {
+        "type": "image",
+        "style": null
+      }
+    },
+    {
+      "id": "screen-4",
+      "title": "Follow every game with Matchday Live",
+      "subtitle": "Verified live scores, statistics and table updates, including links to watch official broadcasts live wherever you are",
+      "media": null,
+      "overlay": null,
+      "logo": {
+        "visible": false
+      },
+      "background": {
+        "type": "gradient",
+        "style": "linear-gradient(210deg, #f4b51e 0%, #f8731c 55%, #f03a47 100%)"
+      },
+      "mockup": {
+        "enabled": true,
+        "frame": "/docs/mockup/mockup7.png",
+        "contentImage": "/docs/tmp/pexels-dawid-tkocz-2157133464-34721374.jpg",
+        "deviceStyle": {
+          "top": "-85%"
+        },
+        "frameStyle": {
+          "width": "520px",
+          "transform": "translate(-50%, 92px)",
+          "filter": "drop-shadow(0 35px 55px rgba(0, 1, 3, 0.55))",
+          "zIndex": "10"
+        },
+        "screenStyle": {
+          "top": "calc(110% - 210px)",
+          "width": "210px",
+          "height": "480px",
+          "borderRadius": "38px",
+          "boxShadow": "0 35px 55px rgba(15, 23, 42, 0.45)"
+        },
+        "imageStyle": {
+          "objectPosition": "center 52%"
+        }
+      }
+    },
+    {
+      "id": "screen-5",
+      "title": "Don't miss a moment with Matchday Stories",
+      "subtitle": "Vertical storytelling of every match from every ground as it happens",
+      "media": null,
+      "overlay": null,
+      "logo": {
+        "visible": false
+      },
+      "background": {
+        "type": "gradient",
+        "style": "linear-gradient(200deg, #8f5bff 0%, #5837f6 60%, #3929d6 100%)"
+      },
+      "mockup": {
+        "enabled": true,
+        "frame": "/docs/mockup/mockup7.png",
+        "contentImage": "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=640&q=80",
+        "deviceStyle": {
+          "top": "-86%"
+        },
+        "frameStyle": {
+          "width": "520px",
+          "transform": "translate(-50%, 96px)",
+          "filter": "drop-shadow(0 35px 55px rgba(0, 1, 3, 0.55))",
+          "zIndex": "10"
+        },
+        "screenStyle": {
+          "top": "calc(108% - 200px)",
+          "width": "220px",
+          "height": "470px",
+          "borderRadius": "38px",
+          "boxShadow": "0 35px 55px rgba(15, 23, 42, 0.45)"
+        },
+        "imageStyle": {
+          "objectPosition": "center 45%"
+        }
+      }
+    }
+  ]
+}
