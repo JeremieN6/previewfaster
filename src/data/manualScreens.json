@@ -25,6 +25,22 @@
       "background": {
         "type": "image",
         "style": null
+      },
+      "editor": {
+        "fields": {
+          "media": true,
+          "title": true,
+          "subtitle": false,
+          "overlay": false,
+          "background": false,
+          "logo": {
+            "enabled": true,
+            "allowUpload": true,
+            "allowLabel": false,
+            "allowColors": false
+          },
+          "mockup": false
+        }
       }
     },
     {
@@ -41,8 +57,19 @@
         "visible": false
       },
       "background": {
-        "type": "image",
-        "style": null
+        "type": "gradient",
+        "style": "linear-gradient(180deg, #222 0%, #111 100%)"
+      },
+      "editor": {
+        "fields": {
+          "media": false,
+          "title": false,
+          "subtitle": false,
+          "overlay": false,
+          "background": true,
+          "logo": false,
+          "mockup": false
+        }
       }
     },
     {
@@ -62,8 +89,19 @@
         "visible": false
       },
       "background": {
-        "type": "image",
-        "style": null
+        "type": "gradient",
+        "style": "linear-gradient(220deg, #1f1c2c 0%, #928dab 100%)"
+      },
+      "editor": {
+        "fields": {
+          "media": false,
+          "title": true,
+          "subtitle": false,
+          "overlay": false,
+          "background": true,
+          "logo": false,
+          "mockup": false
+        }
       }
     },
     {
@@ -102,6 +140,23 @@
         "imageStyle": {
           "objectPosition": "center 52%"
         }
+      },
+      "editor": {
+        "fields": {
+          "media": false,
+          "title": true,
+          "subtitle": true,
+          "overlay": false,
+          "background": true,
+          "logo": false,
+          "mockup": {
+            "enabled": true,
+            "allowScreenshot": true,
+            "allowUpload": true,
+            "allowUrl": true,
+            "allowObjectPosition": false
+          }
+        }
       }
     },
     {
@@ -139,6 +194,23 @@
         },
         "imageStyle": {
           "objectPosition": "center 45%"
+        }
+      },
+      "editor": {
+        "fields": {
+          "media": false,
+          "title": true,
+          "subtitle": true,
+          "overlay": false,
+          "background": true,
+          "logo": false,
+          "mockup": {
+            "enabled": true,
+            "allowScreenshot": true,
+            "allowUpload": true,
+            "allowUrl": true,
+            "allowObjectPosition": false
+          }
         }
       }
     }

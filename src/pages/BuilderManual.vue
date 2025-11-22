@@ -39,40 +39,64 @@
                         <h3 class="text-sm font-semibold uppercase tracking-[0.3em] text-gray-500 dark:text-gray-400">Premier League</h3>
                         <p class="text-xs text-gray-400 dark:text-gray-500">5 écrans</p>
                       </div>
-                      <button type="button" class="inline-flex items-center gap-2 rounded-lg border border-blue-600 bg-blue-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-500 focus:outline-none"> Choisir ce template </button>
+                      <button
+                        type="button"
+                        class="inline-flex items-center gap-2 rounded-lg border border-blue-600 bg-blue-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-500 focus:outline-none"
+                        @click="openManualEditor('screen-1')"
+                      >
+                        Personnaliser ce pack
+                      </button>
                     </header>
                     <div class="flex gap-6 flex-nowrap">
                     <!-- Screen 1 -->
                     <div class="relative flex-none h-[520px] w-[260px] overflow-hidden rounded-3xl border border-white/20 bg-slate-900/60 shadow-lg shadow-slate-900/40 dark:border-white/10">
-                      <img :src="manualScreenConfigs['screen-1']?.media?.src" class="h-full w-full object-cover" alt="Screen 1" />
+                      <img :src="screensById['screen-1']?.media?.src" class="h-full w-full object-cover" alt="Screen 1" />
                       
                       <!-- Ombre haut vers bas -->
                       <div class="absolute inset-0 pointer-events-none rounded-3xl" :style="overlayStyleFor('screen-1')"></div>
 
                       <div class="pointer-events-none absolute inset-0 flex flex-col justify-between p-5">
-                        <div class="flex justify-start" v-if="manualScreenConfigs['screen-1']?.logo?.visible">
-                          <div class="h-16 w-16 rounded-full text-center shadow-lg backdrop-blur" :style="{ background: manualScreenConfigs['screen-1']?.logo?.background, color: manualScreenConfigs['screen-1']?.logo?.textColor }">
-                            <div class="flex h-full items-center justify-center text-sm font-semibold">{{ manualScreenConfigs['screen-1']?.logo?.label }}</div>
+                        <div class="flex justify-start" v-if="screensById['screen-1']?.logo?.visible">
+                          <div
+                            class="h-16 w-16 overflow-hidden rounded-full text-center shadow-lg backdrop-blur"
+                            :style="{ background: screensById['screen-1']?.logo?.background, color: screensById['screen-1']?.logo?.textColor }"
+                          >
+                            <img
+                              v-if="screensById['screen-1']?.logo?.imageUrl"
+                              :src="screensById['screen-1']?.logo?.imageUrl"
+                              alt="Logo écran"
+                              class="h-full w-full object-contain"
+                            />
+                            <div v-else class="flex h-full items-center justify-center text-sm font-semibold">{{ screensById['screen-1']?.logo?.label }}</div>
                           </div>
                         </div>
-                        <h2 class="absolute bottom-5 left-5 right-5 text-3xl font-bold leading-[1.1] text-white mt-auto pr-10 line-clamp-4">{{ manualScreenConfigs['screen-1']?.title }}</h2>
+                        <h2 class="absolute bottom-5 left-5 right-5 mt-auto max-h-48 overflow-hidden pr-10 text-3xl font-bold leading-[1.1] text-white whitespace-pre-line break-words line-clamp-4">{{ screensById['screen-1']?.title }}</h2>
                       </div>
+                      <button type="button" class="absolute right-4 top-4 z-20 rounded-full bg-white/80 px-3 py-1 text-xs font-semibold text-gray-700 shadow-sm transition hover:bg-white" @click="openManualEditor('screen-1')">
+                        Modifier
+                      </button>
                     </div>
                     <!-- Screen 2 -->
                     <div class="relative flex-none h-[520px] w-[260px] overflow-hidden rounded-3xl border border-white/20 bg-slate-900/60 shadow-lg shadow-slate-900/40 dark:border-white/10">
-                      <img :src="manualScreenConfigs['screen-2']?.media?.src" class="h-full w-full object-cover" alt="Screen 2" />
+                      <img :src="screensById['screen-2']?.media?.src" class="h-full w-full object-cover" alt="Screen 2" />
+                      <button type="button" class="absolute right-4 top-4 z-20 rounded-full bg-white/80 px-3 py-1 text-xs font-semibold text-gray-700 shadow-sm transition hover:bg-white" @click="openManualEditor('screen-2')">
+                        Modifier
+                      </button>
                     </div>
 
                     <!-- Screen 3 -->
                     <div class="relative flex-none h-[520px] w-[260px] overflow-hidden rounded-3xl border border-white/20 bg-slate-900/60 shadow-lg shadow-slate-900/40 dark:border-white/10">
-                      <img :src="manualScreenConfigs['screen-3']?.media?.src" class="h-full w-full object-cover" alt="Screen 3" />
+                      <img :src="screensById['screen-3']?.media?.src" class="h-full w-full object-cover" alt="Screen 3" />
                       
                       <!-- Ombre haut vers bas -->
                       <div class="absolute inset-0 pointer-events-none rounded-3xl" :style="overlayStyleFor('screen-3')"></div>
 
                       <div class="pointer-events-none absolute inset-0 flex flex-col justify-between p-5">
-                        <h2 class="absolute bottom-5 left-5 right-5 text-3xl font-bold leading-[1.1] text-white mt-auto pr-6 line-clamp-4">{{ manualScreenConfigs['screen-3']?.title }}</h2>
+                        <h2 class="absolute bottom-5 left-5 right-5 mt-auto max-h-48 overflow-hidden pr-6 text-3xl font-bold leading-[1.1] text-white whitespace-pre-line break-words line-clamp-4">{{ screensById['screen-3']?.title }}</h2>
                       </div>
+                      <button type="button" class="absolute right-4 top-4 z-20 rounded-full bg-white/80 px-3 py-1 text-xs font-semibold text-gray-700 shadow-sm transition hover:bg-white" @click="openManualEditor('screen-3')">
+                        Modifier
+                      </button>
                     </div>
 
                     <!-- Screen 4 -->
@@ -81,9 +105,9 @@
 
                       <div class="pointer-events-none absolute inset-0"></div>
 
-                      <div class="pointer-events-none absolute inset-0 flex flex-col items-center justify-start pt-4 z-10">
-                        <h2 class="text-center text-xl font-bold leading-tight text-white drop-shadow-lg line-clamp-3">Follow every game<br />with Matchday Live</h2>
-                        <p class="mt-3 px-6 text-center text-xs leading-snug text-white/90 drop-shadow-md line-clamp-3">Verified live scores, statistics and table updates, including links to watch official broadcasts live wherever you are</p>
+                      <div class="pointer-events-none absolute inset-0 z-10 flex flex-col items-center justify-start pt-4">
+                        <h2 class="max-h-28 overflow-hidden px-6 text-center text-xl font-bold leading-tight text-white whitespace-pre-line break-words drop-shadow-lg line-clamp-3">{{ screensById['screen-4']?.title }}</h2>
+                        <p class="mt-3 max-h-28 overflow-hidden px-6 text-center text-xs leading-snug text-white/90 whitespace-pre-line break-words drop-shadow-md line-clamp-3">{{ screensById['screen-4']?.subtitle }}</p>
                       </div>
 
                       <div v-if="screenFourMockup" class="mockup-device" :style="screenFourMockup.deviceStyle">
@@ -97,6 +121,9 @@
                           <img :src="screenFourMockup.contentImage" alt="Interface personnalisée" class="mockup-screen__image" :style="screenFourMockup.imageStyle" />
                         </div>
                       </div>
+                      <button type="button" class="absolute right-4 top-4 z-20 rounded-full bg-white/80 px-3 py-1 text-xs font-semibold text-gray-700 shadow-sm transition hover:bg-white" @click="openManualEditor('screen-4')">
+                        Modifier
+                      </button>
                     </div>
 
                     <!-- Screen 5 -->
@@ -105,9 +132,9 @@
 
                       <div class="pointer-events-none absolute inset-0"></div>
 
-                      <div class="pointer-events-none absolute inset-0 flex flex-col items-center justify-start pt-4 z-10">
-                        <h2 class="text-center text-xl font-bold leading-tight text-white drop-shadow-lg line-clamp-3">Don't miss a moment<br />with Matchday Stories</h2>
-                        <p class="mt-3 px-6 text-center text-xs leading-relaxed text-white/90 drop-shadow-md line-clamp-3">Vertical storytelling of every match from every ground as it happens</p>
+                      <div class="pointer-events-none absolute inset-0 z-10 flex flex-col items-center justify-start pt-4">
+                        <h2 class="max-h-28 overflow-hidden px-6 text-center text-xl font-bold leading-tight text-white whitespace-pre-line break-words drop-shadow-lg line-clamp-3">{{ screensById['screen-5']?.title }}</h2>
+                        <p class="mt-3 max-h-28 overflow-hidden px-6 text-center text-xs leading-relaxed text-white/90 whitespace-pre-line break-words drop-shadow-md line-clamp-3">{{ screensById['screen-5']?.subtitle }}</p>
                       </div>
 
                       <div v-if="screenFiveMockup" class="mockup-device" :style="screenFiveMockup.deviceStyle">
@@ -121,6 +148,9 @@
                           <img :src="screenFiveMockup.contentImage" alt="Matchday Stories preview" class="mockup-screen__image" :style="screenFiveMockup.imageStyle" />
                         </div>
                       </div>
+                      <button type="button" class="absolute right-4 top-4 z-20 rounded-full bg-white/80 px-3 py-1 text-xs font-semibold text-gray-700 shadow-sm transition hover:bg-white" @click="openManualEditor('screen-5')">
+                        Modifier
+                      </button>
                     </div>
                   </div>
                   </section>
@@ -134,37 +164,107 @@
 
     <LandingNewsletter />
     <LandingFooter />
+    <ManualScreenEditorModal :open="Boolean(activeScreen)" :screen="activeScreen" @close="closeManualEditor" />
   </section>
 </template>
 
 <script setup>
+import { computed, ref } from 'vue'
 import LandingNav from '../components/landing/LandingNav.vue'
 import LandingFooter from '../components/landing/LandingFooter.vue'
 import LandingNewsletter from '../components/landing/LandingNewsletter.vue'
 import ScreenshotUploader from '../components/ScreenshotUploader.vue'
 import TextCardsEditor from '../components/TextCardsEditor.vue'
 import Sidebar from '../components/Sidebar.vue'
+import ManualScreenEditorModal from '../components/ManualScreenEditorModal.vue'
 import manualScreensData from '../data/manualScreens.json'
+import { useBuilderStore } from '../store/builderStore'
 
 const phoneMockupUrl = '/docs/mockup/mockup7.png'
-const manualScreenConfigs = manualScreensData.screens.reduce((acc, screen) => {
+const baseScreens = manualScreensData.screens
+const baseScreensById = baseScreens.reduce((acc, screen) => {
   acc[screen.id] = screen
   return acc
 }, {})
 
+const store = useBuilderStore()
+
+const resolvedScreens = computed(() => {
+  return baseScreens.map((screen, index) => {
+    const override = store.getSlideOverride(screen.id) || {}
+    const fallbackScreenshot = store.state.screenshots[index] || store.state.screenshots[0] || null
+    const selectedScreenshot = override.screenshotId
+      ? store.state.screenshots.find((shot) => shot.id === override.screenshotId)
+      : fallbackScreenshot
+
+    const resolvedMediaSrc = override.mediaSrc || selectedScreenshot?.url || screen.media?.src
+    const mergedLogo = screen.logo
+      ? {
+          ...screen.logo,
+          ...override.logo
+        }
+      : null
+
+    const buildMockup = () => {
+      if (!screen.mockup?.enabled) return null
+      const overrideMockup = override.mockup || {}
+      const mockupScreenshot = overrideMockup.screenshotId
+        ? store.state.screenshots.find((shot) => shot.id === overrideMockup.screenshotId)
+        : selectedScreenshot
+      return {
+        ...screen.mockup,
+        ...overrideMockup,
+        deviceStyle: { ...screen.mockup.deviceStyle, ...(overrideMockup.deviceStyle || {}) },
+        frameStyle: { ...screen.mockup.frameStyle, ...(overrideMockup.frameStyle || {}) },
+        screenStyle: { ...screen.mockup.screenStyle, ...(overrideMockup.screenStyle || {}) },
+        imageStyle: { ...screen.mockup.imageStyle, ...(overrideMockup.imageStyle || {}) },
+        contentImage: overrideMockup.contentImage || mockupScreenshot?.url || screen.mockup.contentImage,
+        frame: overrideMockup.frame || screen.mockup.frame
+      }
+    }
+
+    return {
+      ...screen,
+      title: override.title ?? screen.title,
+      subtitle: override.subtitle ?? screen.subtitle,
+      overlay: override.overlayStyle ? { ...(screen.overlay || {}), style: override.overlayStyle } : screen.overlay,
+      background: override.backgroundStyle ? { ...(screen.background || {}), style: override.backgroundStyle } : screen.background,
+      media: { ...(screen.media || {}), src: resolvedMediaSrc },
+      logo: mergedLogo,
+      mockup: buildMockup()
+    }
+  })
+})
+
+const screensById = computed(() => {
+  const map = {}
+  resolvedScreens.value.forEach((screen) => {
+    map[screen.id] = screen
+  })
+  return map
+})
+
 const backgroundStyleFor = (id) => {
-  const style = manualScreenConfigs[id]?.background?.style
+  const style = screensById.value[id]?.background?.style
   return style ? { background: style } : undefined
 }
 
 const overlayStyleFor = (id) => {
-  const style = manualScreenConfigs[id]?.overlay?.style
+  const style = screensById.value[id]?.overlay?.style
   return style ? { background: style } : undefined
 }
 
-const mockupConfigFor = (id) => manualScreenConfigs[id]?.mockup ?? null
-const screenFourMockup = mockupConfigFor('screen-4')
-const screenFiveMockup = mockupConfigFor('screen-5')
+const screenFourMockup = computed(() => screensById.value['screen-4']?.mockup ?? null)
+const screenFiveMockup = computed(() => screensById.value['screen-5']?.mockup ?? null)
+
+const activeScreenId = ref(null)
+const activeScreen = computed(() => (activeScreenId.value ? baseScreensById[activeScreenId.value] : null))
+const openManualEditor = (id) => {
+  activeScreenId.value = id
+}
+const closeManualEditor = () => {
+  activeScreenId.value = null
+}
 </script>
 
 <style scoped>

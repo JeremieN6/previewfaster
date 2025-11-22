@@ -20,7 +20,9 @@ const state = reactive({
   textCards: defaultTextCards,
   selectedCategory: 'all',
   selectedTemplateId: null,
-  overrides: {}
+  overrides: {},
+  logos: {},
+  mockups: {}
 })
 
 const isValidImage = (file) => /image\/(png|jpe?g)$/i.test(file.type)
@@ -108,6 +110,60 @@ export function useBuilderStore() {
 
   const getSlideOverride = (slideId) => state.overrides[slideId] || null
 
+  const setLogoAsset = (slideId, file) => {
+    if (!file || !isValidImage(file)) {
+      return { ok: false, message: 'Formats acceptés: JPG ou PNG.' }
+    }
+    const current = state.logos[slideId]
+    if (current) {
+      URL.revokeObjectURL(current.url)
+    }
+    const asset = {
+      id: createId(),
+      file,
+      name: file.name,
+      url: URL.createObjectURL(file)
+    }
+    state.logos[slideId] = asset
+    return { ok: true, asset }
+  }
+
+  const removeLogoAsset = (slideId) => {
+    const current = state.logos[slideId]
+    if (!current) return
+    URL.revokeObjectURL(current.url)
+    delete state.logos[slideId]
+  }
+
+  const getLogoAsset = (slideId) => state.logos[slideId] || null
+
+  const setMockupAsset = (slideId, file) => {
+    if (!file || !isValidImage(file)) {
+      return { ok: false, message: 'Formats acceptés: JPG ou PNG.' }
+    }
+    const current = state.mockups[slideId]
+    if (current) {
+      URL.revokeObjectURL(current.url)
+    }
+    const asset = {
+      id: createId(),
+      file,
+      name: file.name,
+      url: URL.createObjectURL(file)
+    }
+    state.mockups[slideId] = asset
+    return { ok: true, asset }
+  }
+
+  const removeMockupAsset = (slideId) => {
+    const current = state.mockups[slideId]
+    if (!current) return
+    URL.revokeObjectURL(current.url)
+    delete state.mockups[slideId]
+  }
+
+  const getMockupAsset = (slideId) => state.mockups[slideId] || null
+
   return {
     state,
     screenshotCount,
@@ -122,6 +178,12 @@ export function useBuilderStore() {
     setSelectedTemplateId,
     closeModal,
     setSlideOverride,
-    getSlideOverride
+    getSlideOverride,
+    setLogoAsset,
+    removeLogoAsset,
+    getLogoAsset,
+    setMockupAsset,
+    removeMockupAsset,
+    getMockupAsset
   }
 }
