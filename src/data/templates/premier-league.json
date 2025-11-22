@@ -2,6 +2,9 @@
   "packId": "premier-league-manual",
   "name": "Premier League Manual Pack",
   "description": "Référence des écrans construits manuellement pour le pack Premier League, avec positions, assets et réglages visuels.",
+  "category": "Sport",
+  "tags": ["sport", "uk", "mobile"],
+  "sourceUrl": "https://scrnshts.club/stack/premier-league",
   "screens": [
     {
       "id": "screen-1",

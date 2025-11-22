@@ -6,12 +6,15 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "scrape": "node scripts/scrape-templates.js"
   },
   "dependencies": {
     "dom-to-image-more": "^3.3.7",
     "flowbite": "^2.5.1",
     "flowbite-vue": "^0.1.6",
+    "jsdom": "^27.2.0",
+    "node-fetch": "^2.7.0",
     "vue": "^3.5.13",
     "vue-router": "^4.4.5"
   },

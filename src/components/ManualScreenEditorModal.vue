@@ -1,7 +1,11 @@
 <template>
   <teleport to="body">
-    <div v-if="open && screen" class="fixed inset-0 z-50 overflow-y-auto bg-slate-900/70 px-4 py-8" @click.self="emitClose">
-      <div class="relative mx-auto w-full max-w-4xl rounded-3xl bg-white p-6 shadow-2xl dark:bg-gray-900">
+    <div
+      v-if="open && screen"
+      class="fixed inset-0 z-50 flex min-h-screen items-center justify-center overflow-y-auto bg-slate-900/70 px-4 py-8"
+      @click.self="emitClose"
+    >
+      <div class="relative w-full max-w-4xl rounded-3xl bg-white p-6 shadow-2xl dark:bg-gray-900">
         <button
           type="button"
           class="absolute right-4 top-4 inline-flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 text-gray-500 hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-300"
@@ -238,6 +242,18 @@ const screenOrderMap = manualScreensData.screens.reduce((acc, screen, index) => 
   return acc
 }, {})
 
+const inferScreenOrder = (screen) => {
+  if (!screen) return null
+  if (typeof screen.order === 'number') {
+    return screen.order
+  }
+  if (screenOrderMap[screen.id]) {
+    return screenOrderMap[screen.id]
+  }
+  const match = screen.id ? screen.id.match(/(\d+)/) : null
+  return match ? Number(match[1]) : null
+}
+
 const selectedScreenshotId = ref(null)
 const title = ref('')
 const subtitle = ref('')
@@ -326,8 +342,11 @@ const mockupOptions = computed(() => fieldControls.value.mockupOptions)
 const resolvedMockupImage = computed(() => mockupUploadedUrl.value || mockupUrlInput.value || '')
 const screenDisplayLabel = computed(() => {
   if (!props.screen) return ''
-  const order = screenOrderMap[props.screen.id]
-  return order ? `Écran ${order}` : props.screen.title || props.screen.id
+  const order = inferScreenOrder(props.screen)
+  if (order) {
+    return `Écran ${order}`
+  }
+  return props.screen.title || props.screen.id
 })
 
 const getScreenshotUrl = (id) => {
