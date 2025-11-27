@@ -47,18 +47,18 @@
 <script setup>
 const plans = [
   {
-    title: '💸 Gratuit à vie',
+    title: 'Plan Starter',
     price: '0€',
     description: 'Parfait pour tester et produire vos premiers mockups marketing.',
-    features: ['5 exports HD / mois', '12 templates iOS & Android', 'Blocs texte personnalisables', 'Sauvegarde locale & thème sombre'],
+    features: ['5 exports HD / mois', 'Accès illimité au panel de modification', '10 templates professionnels prêt à l\'emploi', '7 combinaisons typo différentes', 'Support par email sous 48h'],
     cta: 'Commencer gratuitement',
     highlight: false
   },
   {
-    title: '🔥 Plan Pro',
+    title: 'Plan Pro',
     price: '19,90€',
-    description: 'Idéal pour les studios qui livrent des visuels chaque semaine.',
-    features: ['Exports illimités (PNG + ZIP)', 'Templates premium mis à jour', 'Exports partagés avec vos clients', 'Support prioritaire + roadmap privée'],
+    description: 'Tout ce dont vous avez besoin pour obtenir un template au design professionnel & avancée.',
+    features: ['Exports illimités (PNG + ZIP)', 'Génération de variantes multilingues (Bientôt)', '30 templates premium et 40 layouts combinables' , '25 familles de polices (≈120 variantes) ', 'Mise à l’échelle automatique', 'Exports partagés avec vos clients', 'Dupliquer des templates', 'Support prioritaire + vidéos tutoriels'],
     cta: 'Acheter maintenant',
     highlight: true
   }
