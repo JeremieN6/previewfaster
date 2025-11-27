@@ -160,7 +160,7 @@
                   <label class="text-sm font-semibold text-gray-700 dark:text-gray-200">Ou uploader une image</label>
                   <input
                     type="file"
-                    accept="image/png,image/jpeg,image/jpg"
+                    accept="image/png,image/jpeg,image/jpg,image/webp,"
                     @change="handleImageUpload"
                     class="mt-2 w-full rounded-xl border border-gray-200 px-3 py-2 text-sm file:mr-4 file:rounded-lg file:border-0 file:bg-blue-50 file:px-4 file:py-2 file:text-sm file:font-semibold file:text-blue-700 hover:file:bg-blue-100 dark:border-gray-700 dark:bg-gray-900 dark:file:bg-blue-900/40 dark:file:text-blue-200"
                   />
@@ -396,8 +396,8 @@ const jumpTo = (index) => {
 const handleImageUpload = (event) => {
   const file = event.target.files?.[0]
   if (!file) return
-  if (!/image\/(png|jpe?g)$/i.test(file.type)) {
-    alert('Format non supporté. Utilisez JPG ou PNG.')
+  if (!/image\/(webp|png|jpe?g)$/i.test(file.type)) {
+  alert('Format non supporté. Utilise WEBP, PNG ou JPG.')
     return
   }
   localBackground.value.imageUrl = URL.createObjectURL(file)

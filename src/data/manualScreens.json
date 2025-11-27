@@ -4,13 +4,14 @@
   "description": "Référence des écrans construits manuellement pour le pack Premier League, avec positions, assets et réglages visuels.",
   "screens": [
     {
-      "id": "screen-1",
+      "id": "premier-league-screen-1",
+      "group": "premier-league",
       "title": "The official Premier League app",
       "subtitle": null,
       "copy": null,
       "media": {
         "type": "image",
-        "src": "https://placehold.co/350x700/f7a5c7/FFFFFF?text=Screen+1"
+        "src": "src/assets/screenshots-example/1.jpg"
       },
       "overlay": {
         "type": "gradient",
@@ -44,13 +45,14 @@
       }
     },
     {
-      "id": "screen-2",
+      "id": "premier-league-screen-2",
+      "group": "premier-league",
       "title": null,
       "subtitle": null,
       "copy": null,
       "media": {
         "type": "image",
-        "src": "https://placehold.co/350x700/cecece/FFFFFF?text=Screen+2"
+        "src": "src/assets/screenshots-example/2.jpg"
       },
       "overlay": null,
       "logo": {
@@ -73,13 +75,14 @@
       }
     },
     {
-      "id": "screen-3",
+      "id": "premier-league-screen-3",
+      "group": "premier-league",
       "title": "The new home of the Premier League",
       "subtitle": null,
       "copy": null,
       "media": {
         "type": "image",
-        "src": "https://placehold.co/350x700/b7d2ff/FFFFFF?text=Screen+3"
+        "src": "src/assets/screenshots-example/3.jpg"
       },
       "overlay": {
         "type": "gradient",
@@ -105,7 +108,8 @@
       }
     },
     {
-      "id": "screen-4",
+      "id": "premier-league-screen-4",
+      "group": "premier-league",
       "title": "Follow every game with Matchday Live",
       "subtitle": "Verified live scores, statistics and table updates, including links to watch official broadcasts live wherever you are",
       "media": null,
@@ -115,12 +119,12 @@
       },
       "background": {
         "type": "gradient",
-        "style": "linear-gradient(210deg, #f4b51e 0%, #f8731c 55%, #f03a47 100%)"
+        "style": "linear-gradient(180deg, #37003C 0%, #933BFA 100%)"
       },
       "mockup": {
         "enabled": true,
         "frame": "/docs/mockup/mockup7.png",
-        "contentImage": "/docs/tmp/pexels-dawid-tkocz-2157133464-34721374.jpg",
+        "contentImage": "src/assets/screenshots-example/4.jpg",
         "deviceStyle": {
           "top": "-85%"
         },
@@ -160,7 +164,8 @@
       }
     },
     {
-      "id": "screen-5",
+      "id": "premier-league-screen-5",
+      "group": "premier-league",
       "title": "Don't miss a moment with Matchday Stories",
       "subtitle": "Vertical storytelling of every match from every ground as it happens",
       "media": null,
@@ -170,12 +175,12 @@
       },
       "background": {
         "type": "gradient",
-        "style": "linear-gradient(200deg, #8f5bff 0%, #5837f6 60%, #3929d6 100%)"
+        "style": "linear-gradient(180deg, #37003C 0%, #933BFA 100%)"
       },
       "mockup": {
         "enabled": true,
         "frame": "/docs/mockup/mockup7.png",
-        "contentImage": "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=640&q=80",
+        "contentImage": "src/assets/screenshots-example/5.jpg",
         "deviceStyle": {
           "top": "-86%"
         },

@@ -7,7 +7,8 @@
   "sourceUrl": "https://scrnshts.club/stack/premier-league",
   "screens": [
     {
-      "id": "screen-1",
+      "id": "premier-league-screen-1",
+      "group": "premier-league",
       "title": "The official Premier League app",
       "subtitle": null,
       "copy": null,
@@ -47,7 +48,8 @@
       }
     },
     {
-      "id": "screen-2",
+      "id": "premier-league-screen-2",
+      "group": "premier-league",
       "title": null,
       "subtitle": null,
       "copy": null,
@@ -76,7 +78,8 @@
       }
     },
     {
-      "id": "screen-3",
+      "id": "premier-league-screen-3",
+      "group": "premier-league",
       "title": "The new home of the Premier League",
       "subtitle": null,
       "copy": null,
@@ -108,7 +111,8 @@
       }
     },
     {
-      "id": "screen-4",
+      "id": "premier-league-screen-4",
+      "group": "premier-league",
       "title": "Follow every game with Matchday Live",
       "subtitle": "Verified live scores, statistics and table updates, including links to watch official broadcasts live wherever you are",
       "media": null,
@@ -118,7 +122,7 @@
       },
       "background": {
         "type": "gradient",
-        "style": "linear-gradient(210deg, #f4b51e 0%, #f8731c 55%, #f03a47 100%)"
+        "style": "linear-gradient(180deg, #37003C 0%, #933BFA 100%)"
       },
       "mockup": {
         "enabled": true,
@@ -163,7 +167,8 @@
       }
     },
     {
-      "id": "screen-5",
+      "id": "premier-league-screen-5",
+      "group": "premier-league",
       "title": "Don't miss a moment with Matchday Stories",
       "subtitle": "Vertical storytelling of every match from every ground as it happens",
       "media": null,
@@ -173,7 +178,7 @@
       },
       "background": {
         "type": "gradient",
-        "style": "linear-gradient(200deg, #8f5bff 0%, #5837f6 60%, #3929d6 100%)"
+        "style": "linear-gradient(180deg, #37003C 0%, #933BFA 100%)"
       },
       "mockup": {
         "enabled": true,

@@ -98,13 +98,57 @@
                     <input type="range" min="0" max="360" v-model.number="gradientAngle" class="mt-1 w-full" />
                   </div>
                 </div>
-                <div v-else class="space-y-2">
-                  <input
-                    v-model="backgroundImageUrl"
-                    type="url"
-                    placeholder="https://..."
-                    class="w-full rounded-xl border border-gray-200 px-3 py-2 text-sm focus:border-blue-600 focus:ring-blue-600 dark:border-gray-700 dark:bg-gray-900"
-                  />
+                <div v-else class="space-y-3">
+                  <div class="space-y-2">
+                    <label class="text-xs font-medium text-gray-500 dark:text-gray-400">Captures importées</label>
+                    <select
+                      v-model="backgroundScreenshotId"
+                      class="w-full rounded-xl border border-gray-200 px-3 py-2 text-sm focus:border-blue-600 focus:ring-blue-600 dark:border-gray-700 dark:bg-gray-900"
+                      :disabled="!screenshots.length"
+                    >
+                      <option :value="null">Aucune capture</option>
+                      <option v-for="shot in screenshots" :key="`background-${shot.id}`" :value="shot.id">{{ shot.name }}</option>
+                    </select>
+                    <p class="text-[11px] text-gray-400 dark:text-gray-500">Choisis l'une des captures importées via la colonne de gauche.</p>
+                  </div>
+
+                  <div class="rounded-2xl border border-dashed border-gray-300 bg-gray-50 p-4 text-center dark:border-gray-600 dark:bg-gray-900/50">
+                    <input ref="backgroundInput" type="file" accept="image/png,image/jpeg,image/webp" class="sr-only" @change="handleBackgroundUpload" />
+                    <p class="text-xs text-gray-500 dark:text-gray-400">WEBP, PNG ou JPG recommandé (max 5 Mo).</p>
+                    <button type="button" class="mt-2 rounded-full bg-white px-4 py-2 text-xs font-semibold text-blue-600 shadow-sm ring-1 ring-blue-200 transition hover:bg-blue-50" @click="triggerBackgroundInput">
+                      Importer une image
+                    </button>
+                  </div>
+
+                  <p v-if="backgroundUploadError" class="text-xs text-red-500">{{ backgroundUploadError }}</p>
+
+                  <div
+                    v-if="backgroundUploadedUrl"
+                    class="flex items-center justify-between rounded-xl border border-gray-200 bg-white p-3 text-sm dark:border-gray-700 dark:bg-gray-900"
+                  >
+                    <div class="flex items-center gap-3">
+                      <div class="h-12 w-12 overflow-hidden rounded-xl border border-gray-200 bg-gray-100 dark:border-gray-700 dark:bg-gray-800">
+                        <img :src="backgroundUploadedUrl" alt="Fond importé" class="h-full w-full object-cover" />
+                      </div>
+                      <div>
+                        <p class="text-xs font-semibold text-gray-700 dark:text-gray-200">{{ backgroundUploadName || 'Fond importé' }}</p>
+                        <p class="text-[11px] text-gray-500 dark:text-gray-400">Prioritaire sur la capture sélectionnée.</p>
+                      </div>
+                    </div>
+                    <button type="button" class="text-xs font-semibold text-red-500" @click="clearBackgroundUpload">Retirer</button>
+                  </div>
+
+                  <div class="space-y-1">
+                    <label class="text-xs font-medium text-gray-500 dark:text-gray-400">URL personnalisée</label>
+                    <input
+                      v-model="backgroundImageUrl"
+                      type="url"
+                      placeholder="https://..."
+                      class="w-full rounded-xl border border-gray-200 px-3 py-2 text-sm focus:border-blue-600 focus:ring-blue-600 dark:border-gray-700 dark:bg-gray-900"
+                      @input="onBackgroundUrlInput"
+                    />
+                    <p class="text-[11px] text-gray-400">Prioritaire sur la capture sélectionnée.</p>
+                  </div>
                 </div>
               </fieldset>
             </div>
@@ -115,8 +159,8 @@
                 <div v-if="logoOptions.allowUpload" class="space-y-2">
                   <label class="text-xs font-medium text-gray-500 dark:text-gray-400">Image du logo</label>
                   <div class="rounded-2xl border border-dashed border-gray-300 bg-gray-50 p-4 text-center dark:border-gray-600 dark:bg-gray-900/50">
-                    <input ref="logoInput" type="file" accept="image/png,image/jpeg" class="sr-only" @change="handleLogoUpload" />
-                    <p class="text-xs text-gray-500 dark:text-gray-400">PNG ou JPG recommandé (max 5 Mo).</p>
+                    <input ref="logoInput" type="file" accept="image/png,image/jpeg,image/webp" class="sr-only" @change="handleLogoUpload" />
+                    <p class="text-xs text-gray-500 dark:text-gray-400">WEBP, PNG ou JPG recommandé (max 5 Mo).</p>
                     <button type="button" class="mt-2 rounded-full bg-white px-4 py-2 text-xs font-semibold text-blue-600 shadow-sm ring-1 ring-blue-200 transition hover:bg-blue-50" @click="triggerLogoInput">
                       Importer un logo
                     </button>
@@ -166,8 +210,8 @@
                 <div v-if="mockupOptions.allowUpload" class="space-y-2">
                   <label class="text-xs font-medium text-gray-500 dark:text-gray-400">Image importée</label>
                   <div class="rounded-2xl border border-dashed border-gray-300 bg-gray-50 p-4 text-center dark:border-gray-600 dark:bg-gray-900/50">
-                    <input ref="mockupInput" type="file" accept="image/png,image/jpeg" class="sr-only" @change="handleMockupUpload" />
-                    <p class="text-xs text-gray-500 dark:text-gray-400">PNG ou JPG recommandé (max 5 Mo).</p>
+                    <input ref="mockupInput" type="file" accept="image/png,image/jpeg,image/webp" class="sr-only" @change="handleMockupUpload" />
+                    <p class="text-xs text-gray-500 dark:text-gray-400">WEBP, PNG ou JPG recommandé (max 5 Mo).</p>
                     <button type="button" class="mt-2 rounded-full bg-white px-4 py-2 text-xs font-semibold text-blue-600 shadow-sm ring-1 ring-blue-200 transition hover:bg-blue-50" @click="triggerMockupInput">
                       Importer un visuel
                     </button>
@@ -264,6 +308,10 @@ const gradientStart = ref('#f4b51e')
 const gradientEnd = ref('#f03a47')
 const gradientAngle = ref(210)
 const backgroundImageUrl = ref('')
+const backgroundScreenshotId = ref(null)
+const backgroundUploadedUrl = ref('')
+const backgroundUploadName = ref('')
+const backgroundUploadError = ref('')
 const logoLabel = ref('Logo')
 const logoBg = ref('#7e3af2')
 const logoText = ref('#ffffff')
@@ -278,6 +326,7 @@ const mockupUploadError = ref('')
 const ready = ref(false)
 const logoInput = ref(null)
 const mockupInput = ref(null)
+const backgroundInput = ref(null)
 
 const backgroundModes = [
   { value: 'solid', label: 'Couleur' },
@@ -405,6 +454,17 @@ const hydrateFromScreen = () => {
   if (controls.background) {
     const initialBg = override.backgroundStyle || base.background?.style || ''
     hydrateBackgroundFromStyle(initialBg, base.background?.type)
+    backgroundScreenshotId.value = override.backgroundScreenshotId || null
+    const backgroundAsset = store.getBackgroundAsset(base.id)
+    if (backgroundAsset) {
+      backgroundUploadedUrl.value = backgroundAsset.url
+      backgroundUploadName.value = backgroundAsset.name
+      backgroundImageUrl.value = backgroundAsset.url
+    } else {
+      backgroundUploadedUrl.value = ''
+      backgroundUploadName.value = ''
+    }
+    backgroundUploadError.value = ''
   } else {
     backgroundMode.value = 'gradient'
     solidColor.value = '#0f172a'
@@ -412,6 +472,10 @@ const hydrateFromScreen = () => {
     gradientEnd.value = '#f03a47'
     gradientAngle.value = 210
     backgroundImageUrl.value = ''
+    backgroundScreenshotId.value = null
+    backgroundUploadedUrl.value = ''
+    backgroundUploadName.value = ''
+    backgroundUploadError.value = ''
   }
 
   if (controls.logo && base.logo) {
@@ -419,6 +483,9 @@ const hydrateFromScreen = () => {
     logoBg.value = override.logo?.background ?? base.logo.background ?? '#ffffff'
     logoText.value = override.logo?.textColor ?? base.logo.textColor ?? '#000000'
     logoImageUrl.value = override.logo?.imageUrl || base.logo.imageUrl || store.getLogoAsset(base.id)?.url || ''
+    if (logoImageUrl.value) {
+      logoBg.value = 'transparent'
+    }
   } else {
     logoLabel.value = base.logo?.label ?? 'Logo'
     logoBg.value = base.logo?.background ?? '#ffffff'
@@ -469,6 +536,8 @@ watch(
     gradientEnd,
     gradientAngle,
     backgroundImageUrl,
+    backgroundScreenshotId,
+    backgroundUploadedUrl,
     logoLabel,
     logoBg,
     logoText,
@@ -498,6 +567,10 @@ watch(
     }
     if (controls.background) {
       payload.backgroundStyle = buildBackgroundStyle()
+      payload.backgroundMode = backgroundMode.value
+      payload.backgroundScreenshotId = backgroundMode.value === 'image' ? backgroundScreenshotId.value : null
+      const backgroundAsset = props.screen ? store.getBackgroundAsset(props.screen.id) : null
+      payload.backgroundUploadAssetId = backgroundMode.value === 'image' && backgroundAsset ? backgroundAsset.id : null
     }
 
     if (controls.logo && props.screen.logo) {
@@ -516,6 +589,9 @@ watch(
       if (options.allowColors) {
         logoPayload.background = logoBg.value
         logoPayload.textColor = logoText.value
+      }
+      if (logoPayload.imageUrl) {
+        logoPayload.background = 'transparent'
       }
       payload.logo = logoPayload
     }
@@ -551,6 +627,12 @@ const triggerLogoInput = () => {
   }
 }
 
+const triggerBackgroundInput = () => {
+  if (backgroundInput.value) {
+    backgroundInput.value.click()
+  }
+}
+
 const handleLogoUpload = (event) => {
   const file = event.target.files?.[0]
   if (!file || !props.screen) return
@@ -568,6 +650,54 @@ const clearLogoImage = () => {
   if (!props.screen) return
   store.removeLogoAsset(props.screen.id)
   logoImageUrl.value = ''
+  if (props.screen.logo) {
+    logoBg.value = props.screen.logo.background ?? '#ffffff'
+    logoText.value = props.screen.logo.textColor ?? '#000000'
+  }
+}
+
+const handleBackgroundUpload = (event) => {
+  const file = event.target.files?.[0]
+  if (!file || !props.screen) return
+  const result = store.setBackgroundAsset(props.screen.id, file)
+  if (!result.ok) {
+    backgroundUploadError.value = result.message
+  } else {
+    backgroundUploadError.value = ''
+    backgroundMode.value = 'image'
+    backgroundUploadedUrl.value = result.asset.url
+    backgroundUploadName.value = result.asset.name
+    backgroundImageUrl.value = result.asset.url
+    backgroundScreenshotId.value = null
+  }
+  event.target.value = ''
+}
+
+const clearBackgroundUpload = () => {
+  if (!props.screen) return
+  store.removeBackgroundAsset(props.screen.id)
+  backgroundUploadedUrl.value = ''
+  backgroundUploadName.value = ''
+  backgroundUploadError.value = ''
+  if (backgroundMode.value === 'image') {
+    if (backgroundScreenshotId.value) {
+      const url = getScreenshotUrl(backgroundScreenshotId.value)
+      backgroundImageUrl.value = url || ''
+    } else {
+      backgroundImageUrl.value = ''
+    }
+  }
+}
+
+const onBackgroundUrlInput = () => {
+  backgroundMode.value = 'image'
+  backgroundScreenshotId.value = null
+  if (props.screen && backgroundUploadedUrl.value) {
+    store.removeBackgroundAsset(props.screen.id)
+    backgroundUploadedUrl.value = ''
+    backgroundUploadName.value = ''
+  }
+  backgroundUploadError.value = ''
 }
 
 const triggerMockupInput = () => {
@@ -600,4 +730,23 @@ const clearMockupUpload = () => {
 }
 
 const emitClose = () => emit('close')
+
+watch(backgroundScreenshotId, (newId, oldId) => {
+  if (!ready.value || !props.screen) return
+  if (backgroundMode.value !== 'image') return
+  if (newId) {
+    const url = getScreenshotUrl(newId)
+    if (url) {
+      if (backgroundUploadedUrl.value) {
+        store.removeBackgroundAsset(props.screen.id)
+        backgroundUploadedUrl.value = ''
+        backgroundUploadName.value = ''
+      }
+      backgroundImageUrl.value = url
+      backgroundUploadError.value = ''
+    }
+  } else if (!backgroundUploadedUrl.value) {
+    backgroundImageUrl.value = ''
+  }
+})
 </script>

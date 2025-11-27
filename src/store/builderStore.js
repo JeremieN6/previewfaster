@@ -22,10 +22,11 @@ const state = reactive({
   selectedTemplateId: null,
   overrides: {},
   logos: {},
-  mockups: {}
+  mockups: {},
+  backgrounds: {}
 })
 
-const isValidImage = (file) => /image\/(png|jpe?g)$/i.test(file.type)
+const isValidImage = (file) => /image\/(png|jpe?g|webp)$/i.test(file.type)
 
 const makeScreenshot = (file) => ({
   id: createId(),
@@ -40,7 +41,7 @@ export function useBuilderStore() {
   const addScreenshots = (files) => {
     const incoming = Array.from(files).filter(isValidImage)
     if (!incoming.length) {
-      return { ok: false, message: 'Formats acceptés: JPG ou PNG.' }
+  return { ok: false, message: 'Formats acceptés: WEBP, PNG ou JPG.' }
     }
 
     const total = state.screenshots.length + incoming.length
@@ -112,7 +113,7 @@ export function useBuilderStore() {
 
   const setLogoAsset = (slideId, file) => {
     if (!file || !isValidImage(file)) {
-      return { ok: false, message: 'Formats acceptés: JPG ou PNG.' }
+      return { ok: false, message: 'Formats acceptés: WEBP, PNG ou JPG.' }
     }
     const current = state.logos[slideId]
     if (current) {
@@ -139,7 +140,7 @@ export function useBuilderStore() {
 
   const setMockupAsset = (slideId, file) => {
     if (!file || !isValidImage(file)) {
-      return { ok: false, message: 'Formats acceptés: JPG ou PNG.' }
+      return { ok: false, message: 'Formats acceptés: WEBP, PNG ou JPG.' }
     }
     const current = state.mockups[slideId]
     if (current) {
@@ -164,6 +165,33 @@ export function useBuilderStore() {
 
   const getMockupAsset = (slideId) => state.mockups[slideId] || null
 
+  const setBackgroundAsset = (slideId, file) => {
+    if (!file || !isValidImage(file)) {
+      return { ok: false, message: 'Formats acceptés: WEBP, PNG ou JPG.' }
+    }
+    const current = state.backgrounds[slideId]
+    if (current) {
+      URL.revokeObjectURL(current.url)
+    }
+    const asset = {
+      id: createId(),
+      file,
+      name: file.name,
+      url: URL.createObjectURL(file)
+    }
+    state.backgrounds[slideId] = asset
+    return { ok: true, asset }
+  }
+
+  const removeBackgroundAsset = (slideId) => {
+    const current = state.backgrounds[slideId]
+    if (!current) return
+    URL.revokeObjectURL(current.url)
+    delete state.backgrounds[slideId]
+  }
+
+  const getBackgroundAsset = (slideId) => state.backgrounds[slideId] || null
+
   return {
     state,
     screenshotCount,
@@ -184,6 +212,9 @@ export function useBuilderStore() {
     getLogoAsset,
     setMockupAsset,
     removeMockupAsset,
-    getMockupAsset
+    getMockupAsset,
+    setBackgroundAsset,
+    removeBackgroundAsset,
+    getBackgroundAsset
   }
 }
