@@ -41,3 +41,6 @@ tokens.json
 
 # Folder for generated files about issues fixed
 bugsFixed
+
+# Local archive for unused files
+unused_archive/
